@@ -1,0 +1,15 @@
+{
+  "name": "mashweld.ru",
+  "version": "0.0.1",
+  "description": "Company website",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:mashweld/mashweld.github.io.git"
+  },
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "buildbranch": "0.0.1",
+    "gulp": "^3.8.10",
+    "gulp-plumber": "^0.6.6"
+  }
+}
