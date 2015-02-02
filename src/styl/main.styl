@@ -1,0 +1,341 @@
+// Common
+h1, .h1 {
+	display:block;
+	font: 30px/1 $fontTahoma;
+	margin:0 0 25px
+}
+h2, .h2 {
+	display:block;
+	font:21px/1 $fontTahoma;
+	margin:0 0 16px
+}
+h3, .h3 {
+	display:block;
+	font:18px/1.111 $fontTahoma;
+	margin:0 0 12px
+}
+h4, .h4 {
+	display:block;
+	font:700 14px/1.1429 $fontTahoma;
+	margin:0 0 8px
+}
+h5, .h5 {
+	display:block;
+	font:700 12px/1.25 $fontTahoma;
+}
+p, .paragraph {
+	display:block;
+
+	&:first-child,
+	&:first-of-type {
+		margin-top:0;
+	}
+}
+.link {
+	text-decoration:underline
+}
+.link:hover {
+	text-decoration:none
+}
+ol, ul {
+	margin-left:0;
+	padding-left:1.25em;
+}
+li {
+	margin:1em 0;
+	padding:0;
+}
+ul>li {
+	list-style-image: url('../img/bg/ico-list-item.png');
+}
+
+// Layout
+html, body {
+	height:100%
+}
+body {
+	font:12px/1.25 $fontArial;
+	color:#565c6a;
+	position:relative;
+	min-width:$pageWidth;
+	background:#100f0b url('../img/bg/page-bg.jpg') 50% 0 no-repeat;
+}
+
+
+// Columns
+.columns {
+clearList();
+clearfix();
+
+	display:flex;
+	flex-direction:row;
+	align-content: stretch;
+	align-items: stretch;
+
+	.no-flexbox.no-flexboxlegacy.no-flexboxtweener & {
+		flex: none;
+
+		&__item {
+			float:left;
+			display:inline;
+		}
+	}
+
+	&__item {
+		flex:0 0 auto;
+	}
+
+	&_layout_a-b-c {
+		>.columns__item {
+			width:239px;
+
+			margin:0 0 0 64px;
+
+			&:first-child {
+				margin-left:0;
+			}
+		}
+	}
+	&_layout_a-b {
+		>.columns__item {
+			width:400px;
+
+			margin:0 0 0 46px;
+
+			&:first-child {
+				margin-left:0;
+			}
+		}
+		>.columns__item_type_a {
+			width:272px;
+			order:0;
+			margin:0 0 0 -35px;
+			padding:0 30px 0 35px;
+
+			&:before,
+			&>.b-before {
+				content:'';
+				display:block;
+				top:0;
+				left:0;
+				bottom:0;
+				position:absolute;
+				width:272px;
+				padding:0 30px 0 35px;
+				height:100%;
+				background:#fff url('../img/bg/page-pattern.png') -20px 0;
+				z-index:-1;
+			}
+
+			.no-flexbox.no-flexboxlegacy.no-flexboxtweener & {
+				left:0;
+			}
+
+			ie-before() if ie;
+		}
+		>.columns__item_type_b {
+			width:auto;
+			width:604px;
+			padding:0 0 0 20px;
+			order:1;
+
+			.no-flexbox.no-flexboxlegacy.no-flexboxtweener & {
+				margin-left:302px;
+			}
+		}
+		>.columns__item_type_a,
+		>.columns__item_type_b {
+
+			.no-flexbox.no-flexboxlegacy.no-flexboxtweener & {
+				float:left;
+				display:inline;
+//				position:relative;
+				margin-right:-100%;
+			}
+		}
+	}
+}
+.columns_border_dashed {
+	>.columns__item {
+		&:first-child {
+			&:before,
+			>.b-before {
+				display:none;
+			}
+		}
+		&:before,
+		>.b-before {
+			content:'';
+			position:absolute;
+			top:0;
+			bottom:0;
+			width:1px;
+			height:100%;
+			margin-left:-33px;
+			font:$fontNull;
+			border-right:#c2c6ca 1px dashed;
+		}
+
+	ie-beforeAndAfter() if ie;
+	}
+	&.columns_layout_a-b {
+		>.columns__item {
+			&:before,
+			>.b-before {
+				margin-left:-23px;
+			}
+		}
+	}
+}
+
+
+.page {
+	height:auto;
+	min-height:100%;
+	height:auto !important;
+	width:$pageWidth;
+	margin:auto;
+	padding:0;
+	position:relative;
+	overflow:hidden;
+	z-index:2;
+
+	.no-flexbox.no-flexboxlegacy & {
+		flex: none;
+		display:table if ie;
+		height:100%;
+	}
+
+	display:flex;
+	flex-direction:column;
+	align-content: stretch;
+	align-items: stretch;
+}
+
+.header,
+.main,
+.footer {
+	.no-flexbox.no-flexboxlegacy & {
+		display:table-row;
+
+		&__in {
+			display:table-cell;
+			vertical-align:top;
+		}
+	}
+	&__in {
+		clearfix();
+	}
+}
+.main {
+	flex:1 1 auto;
+	align-self:stretch;
+	background:#fff
+
+	.no-flexbox.no-flexboxlegacy & {
+		height:100%;
+
+		&__in {
+			height:100%;
+		}
+	}
+}
+.footer {
+	display:block;
+	color:#fff;
+	background:#0e2156 url('../img/bg/footer-bg.jpg') 50% 0 no-repeat;
+	min-height:100px;
+}
+
+// Header
+.header {
+	margin:0 0 200px
+}
+
+// Main
+.content {
+	margin:215px 35px 0;
+	padding:0;
+}
+
+
+// Footer
+.footer__info {
+	clearfix();
+}
+.footer__logo {
+	float:left;
+	display:inline;
+	margin:10px 10px 0 30px;
+}
+.footer__copyright {
+	display:block;
+	text-align:center;
+	color:#efefef;
+	font:11px/1.25 $fontTahoma;
+	margin:5px 0 0
+}
+.footer__search {
+	float:right;
+	display:inline;
+	margin:35px 66px 0 10px;
+}
+.footer__contacts {
+	display:block;
+	text-align:right;
+	overflow:hidden;
+	padding:0 30px
+}
+
+
+// Additional
+.hidden {
+	display:none !important;
+	visibility:hidden
+}
+.visuallyhidden {
+	border:0;
+	clip:rect(0 0 0 0);
+	height:1px;
+	margin:-1px;
+	overflow:hidden;
+	padding:0;
+	position:absolute;
+	width:1px
+}
+.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+	clip:auto;
+	height:auto;
+	margin:0;
+	overflow:visible;
+	position:static;
+	width:auto
+}
+.invisible {
+	visibility:hidden
+}
+span.placeholder{
+	position:absolute;
+	z-index:1;
+	cursor:text;
+}
+span.placeholder-hide-except-screenreader {
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	padding:0 !important;
+	border:0 !important;
+	height: 1px !important;
+	width: 1px !important;
+	overflow: hidden;
+}
+span.placeholder-hide{
+	display:none;
+}
+/* overwrite for the HTML5 Boilerplate way to hide labels */
+label.visuallyhidden-with-placeholder{
+	/*clip: auto !important;*/
+	height:auto !important;
+	overflow: visible !important;
+	position:absolute !important;
+	left:-999em;
+}

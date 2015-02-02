@@ -1,0 +1,249 @@
+.badge {
+	display:inline-block;
+	background:#073a7b;
+	vertical-align:middle;
+	padding:0;
+	margin:0 10px;
+	line-height:18px;
+	position:relative;
+	white-space:nowrap;
+	color:#fff;
+
+	&:before,
+	>.b-before,
+	&:after,
+	>.b-after {
+		display:block;
+		position:absolute;
+		content:'';
+		top:0;
+		width:100%;
+		height:18px;
+		background:url('../img/bg/badges.png') no-repeat;
+		font:$fontNull;
+	}
+	&:before,
+	>.b-before {
+		left:-10px;
+		padding-right:10px;
+	}
+	&:after,
+	>.b-after {
+		right:-10px;
+		width:10px;
+		background-position:100% -20px;
+	}
+
+	ie-beforeAndAfter() if ie;
+}
+.badge__text {
+	position:relative;
+	z-index:10;
+	display:block;
+	min-height:18px;
+	line-height:16px;
+	color:#fff;
+	font-family:$fontTahoma;
+
+	input& {
+		width:100%;
+		background:none;
+		padding:0;
+		margin:0;
+		min-width:1px;
+		overflow:visible;
+		border:0;
+		height:18px;
+		box-sizing:border-box;
+		width:100%;
+	}
+	input[type="submit"]& {
+		font-weight:500;
+		font-family:$fontDaxline;
+		text-shadow:1px 1px 1px #2360A4;
+		text-transform:uppercase;
+	}
+}
+
+/* badge light > */
+.badge_type_light {
+	background:#0f80e7;
+
+	&:before,
+	>.b-before {
+		background-position:0 -40px;
+	}
+	&:after,
+	>.b-after {
+		background-position:100% -60px;
+	}
+}
+/* badge light < */
+
+/* badge search > */
+.badge_type_search {
+	background:#fff;
+	line-height:24px;
+
+	&:before,
+	&:after,
+	>.b-before,
+	>.b-after {
+		height:27px;
+	}
+
+	&:before,
+	>.b-before {
+		background-position:0 -78px;
+	}
+	&:after,
+	>.b-after {
+		background-position:100% -78px;
+	}
+
+	>.badge__text {
+		color:#4e4e4e;
+		min-height:27px;
+		line-height:24px;
+	}
+	>input.badge__text {
+		height:27px;
+		min-height:0;
+	}
+}
+/* badge search < */
+
+/* badge search button > */
+.badge_type_search-button {
+	background:#1876d0;
+	line-height:24px;
+
+	&:before,
+	&:after,
+	>.b-before,
+	>.b-after {
+		height:27px;
+	}
+
+	&:before,
+	>.b-before {
+		background-position:0 -107px;
+	}
+	&:after,
+	>.b-after {
+		background-position:100% -107px;
+	}
+
+	>.badge__text {
+		color:#fff;
+		min-height:27px;
+		line-height:24px;
+		padding-right:5px;
+
+		input& {
+			height:27px;
+		}
+	}
+}
+/* badge search button < */
+
+/* badge size_medium > */
+.badge_size_medium {
+	background:#073a7b;
+	line-height:18px;
+
+	&:before,
+	&:after,
+	>.b-before,
+	>.b-after {
+		height:21px;
+	}
+
+	&:before,
+	>.b-before {
+		background-position:0 -136px;
+	}
+	&:after,
+	>.b-after {
+		background-position:100% -159px;
+	}
+
+	>.badge__text {
+		color:#fff;
+		min-height:21px;
+		line-height:18px;
+
+		input& {
+			height:21px;
+		}
+	}
+}
+/* badge size_medium < */
+
+/* badge input > */
+.badge_type_input {
+	background:#fff;
+	line-height:27px;
+
+	&:before,
+	&:after,
+	>.b-before,
+	>.b-after {
+		height:29px;
+	}
+
+	&:before,
+	>.b-before {
+		background-position:0 -182px;
+	}
+	&:after,
+	>.b-after {
+		background-position:100% -213px;
+	}
+
+	>.badge__text {
+		color:#4e4e4e;
+		min-height:29px;
+		line-height:27px;
+		padding:0 6px;
+
+		input& {
+			height:29px;
+		}
+	}
+}
+/* badge input < */
+
+/* badge big > */
+.badge_size_big {
+	background:#073a7b;
+	line-height:27px;
+
+	&:before,
+	&:after,
+	>.b-before,
+	>.b-after {
+		height:29px;
+	}
+
+	&:before,
+	>.b-before {
+		background-position:0 -244px;
+	}
+	&:after,
+	>.b-after {
+		background-position:100% -275px;
+	}
+
+	>.badge__text {
+		color:#fff;
+		min-height:29px;
+		padding:0 6px;
+		line-height:27px;
+
+		input& {
+			height:29px;
+		}
+	}
+}
+/* badge big < */

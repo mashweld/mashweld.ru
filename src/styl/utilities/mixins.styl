@@ -1,0 +1,88 @@
+clearfix() {
+	&:before
+	&:after {
+		content: "" if !ie;
+		display: table if !ie;
+	}
+	&:after {
+		clear: both if !ie;
+	}
+	zoom: 1 if ie;
+}
+
+clearList() {
+	list-style:none;
+	padding:0;
+	margin:0;
+
+	>li {
+		list-style-image:none;
+	}
+
+}
+
+align-justify() {
+	text-align:justify;
+	text-justify:newspaper;
+	font:$fontNull;
+	ie-after() if ie;
+
+	&:after,
+	>.b-after {
+		display:inline-block;
+		width:100%;
+		height:0;
+		content:"";
+		vertical-align:top;
+		font: $fontNull;
+	}
+}
+
+placeholder($content = #fff) {
+	&~.placeholder {
+		color:$content;
+		opacity:1;
+	}
+	&:-moz-placeholder {
+		color:$content;
+		opacity: 1;
+	}
+	&::-moz-placeholder {
+		color: $content;
+		opacity: 1;
+	}
+	&::-webkit-input-placeholder {
+		color: $content;
+		opacity: 1;
+	}
+	&:-ms-input-placeholder {
+		color: $content;
+		opacity: 1;
+	}
+}
+
+/* IE Mixins */
+
+ie-beforeAndAfter() {
+	scrollbar-face-color:s("expression(runtimeStyle.scrollbarFaceColor = '#fff',insertAdjacentHTML('afterBegin', '<span class=b-before>%s</span>'),insertAdjacentHTML('beforeEnd','<span class=b-after>%s</span>'))",arguments);
+}
+
+ie-before() {
+	scrollbar-face-color:s("expression(runtimeStyle.scrollbarFaceColor = '#fff',insertAdjacentHTML('afterBegin','<span class=b-before>%s</span>'))",arguments);
+}
+
+ie-after() {
+	scrollbar-face-color:s("expression(runtimeStyle.scrollbarFaceColor = '#fff',insertAdjacentHTML('beforeEnd','<span class=b-after>%s</span>'))",arguments);
+}
+
+ie-gradient-horizontal($startColor = #555, $endColor = #333) {
+	background:none;
+	filter:s("progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=1)",rgb($startColor),rgb($endColor)); // IE9 and down
+	zoom:1;
+}
+
+ie-gradient-vertical($startColor = #555, $endColor = #333) {
+	background:none;
+	filter:s("progid:DXImageTransform.Microsoft.gradient(startColorstr='%s', endColorstr='%s', GradientType=0)",rgb($startColor),rgb($endColor)); // IE9 and down
+	zoom:1;
+}

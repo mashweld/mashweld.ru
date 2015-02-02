@@ -1,17 +1,91 @@
-var gulp = require('gulp');
-var del = require('del');
-var buildBranch = require('buildbranch');
+var gulp = require('gulp'),
+	del = require('del'),
+	runSequence = require('run-sequence'),
+	buildBranch = require('buildbranch'),
+	$ = require('gulp-load-plugins')();
 
+var paths = {
+	scripts: ['src/js/**/*.js'],
+	styles: ['src/styl/**/*.{css,styl}', '!src/styl/*.{css,css.map}'],
+	assets: ['src/img/**/*', 'src/favicons/**/*']
+
+};
+
+//Clean build
 gulp.task('clean', function (cb) {
-    del(['./www'], cb);
+	del(['./www'], cb);
 });
 
-gulp.task('copy', function (cb) {
-    return gulp.src('src/**/*').pipe(gulp.dest('www'));
+// Copy assets
+gulp.task('copy', ['css'], function (cb) {
+	return gulp.src(['src/**/*', '!src/styl/', '!src/styl/**/*', '!src/css/*.css.map'])
+		.pipe(gulp.dest('www'));
 });
 
-gulp.task('build', ['copy']);
+// Styles
+gulp.task('css', function (cb) {
+	return gulp.src('src/styl/styles.styl')
+		.pipe($.sourcemaps.init({
+			loadMaps: true
+		}))
+		.pipe($.plumber())
+		.pipe($.stylus({
+			paths: ['src/styl/utilities', 'node_modules'],
+			define: {
+				ie: false
+			},
+			import: [
+				'variables',
+				'mixins'
+			],
+			sourcemap: {
+				inline: true,
+				sourceRoot: '.',
+				basePath: 'src/css'
+			}
+		}))
+		.pipe($.autoprefixer({
+			browsers: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'IE > 8']/*,
+			 cascade: false*/
+		}))
+		.pipe($.sourcemaps.write('.', {
+			includeContent: false,
+			sourceRoot: '.'
+		}))
+		.pipe(gulp.dest('src/css'));
+});
 
-gulp.task('gh', function(done) {
-    buildBranch({ ignore: ['libs', 'src'] }, done);
+// Minify html
+gulp.task('minify-html', function (cb) {
+	return gulp.src('www/*.html')
+		.pipe($.plumber())
+		.pipe($.htmlmin({
+			collapseWhitespace: true,
+			removeComments: true
+		}))
+		.pipe(gulp.dest('www'));
+});
+
+// Minify css
+gulp.task('minify-css', function (cb) {
+	return gulp.src('www/css/*.css')
+		.pipe($.plumber())
+		.pipe($.borschik({tech: 'cleancss'}))
+		.pipe(gulp.dest('www/css'));
+});
+
+// Watch
+gulp.task('watch', function () {
+	//gulp.watch(paths.scripts, ['js']);
+	gulp.watch(paths.styles, ['css']);
+	gulp.watch(paths.assets, ['copy']);
+	//gulp.watch(paths.images, ['copy-images']);
+});
+
+gulp.task('default', function (cb) {
+	runSequence('clean', 'copy', ['minify-html', 'minify-css'], cb);
+});
+
+gulp.task('gh', ['default'], function (done) {
+	buildBranch({ignore: ['assets', 'src']}, done);
 });
