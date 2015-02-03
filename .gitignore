@@ -2,4 +2,5 @@ www/
 dist/
 .idea/
 node_modules/
+assets
 src/css/styles.css*
