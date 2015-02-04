@@ -17,7 +17,7 @@ gulp.task('clean', function (cb) {
 });
 
 // Copy assets
-gulp.task('copy', ['css', 'images'], function (cb) {
+gulp.task('copy', ['css', 'images', 'fonts'], function (cb) {
 	return gulp.src(['src/**/*', '!src/styl/', '!src/styl/**/*', '!src/css/*.css.map'])
 		.pipe(gulp.dest('www'));
 });
@@ -77,11 +77,22 @@ gulp.task('minify-css', function (cb) {
 // Optimize images
 gulp.task('images', function () {
 	return gulp.src('src/img/**/*')
+		.pipe($.plumber())
 		//.pipe($.newer('src/img'))
 		.pipe($.imagemin({
 			progressive: true
 		}))
 		.pipe(gulp.dest('src/img'));
+});
+
+// Prepare webfonts
+gulp.task('fonts', function() {
+	return gulp.src('src/fonts/webfonts.css')
+		.pipe($.plumber())
+		.pipe($.cssBase64({
+			maxWeightResource: 131072
+		}))
+		.pipe(gulp.dest('src/css/'));
 });
 
 // Watch
