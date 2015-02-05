@@ -1,0 +1,189 @@
+include ../../node_modules/bemto.jade/bemto.jade
+
+mixin menu(obj)
+	- var page_index = {name: 'index', text: 'О компании'}
+	- var page_partners = {name: 'partners', text: 'Поставляемое оборудование'}
+	- var page_contacts = {name: 'contacts', text: 'Контакты'}
+	- var items = [page_index, page_partners, page_contacts]
+	- var menu_type = obj && obj.type ?  'menu_type_'+obj.type : 'menu_type_main'
+	- var active_item = obj && obj.active || 'index'
+
+	ul(class='menu '+menu_type)
+		each item in items
+			- var current = item.name === active_item ? 'menu__item_state_active': ''
+			li(class='menu__item '+current)
+				a.menu__text(href=(item.name === 'index') ? '/' : item.name+'.html')
+					span.menu__text-in #{item.text}
+
+block globals
+	- var title = 'ООО «ВЕЛДТЕХМАШ-О»'
+	- var url = ''
+
+doctype html
+html.no-js
+	head
+		meta(charset='utf-8')
+		title #{title}
+		meta(name='description', content='Сварочное оборудование, материалы, з/ч, сервис')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		meta(property='og:title', content='#{title}')
+		meta(property='og:type', content='website')
+		meta(property='og:url', content='http://mashweld.ru/#{url}')
+		meta(property='og:image', content='//mashweld.ru/img/logo.png')
+		meta(property='og:site_name', content='ООО «ВЕЛДТЕХМАШ-О»')
+		meta(property='og:locale', content='ru_RU')
+		meta(property='og:description', content='Сварочное оборудование, материалы, з/ч, сервис')
+		link(rel='apple-touch-icon', sizes='57x57', href='/apple-touch-icon-57x57.png')
+		link(rel='apple-touch-icon', sizes='60x60', href='/apple-touch-icon-60x60.png')
+		link(rel='apple-touch-icon', sizes='72x72', href='/apple-touch-icon-72x72.png')
+		link(rel='apple-touch-icon', sizes='76x76', href='/apple-touch-icon-76x76.png')
+		link(rel='apple-touch-icon', sizes='114x114', href='/apple-touch-icon-114x114.png')
+		link(rel='apple-touch-icon', sizes='120x120', href='/apple-touch-icon-120x120.png')
+		link(rel='apple-touch-icon', sizes='144x144', href='/apple-touch-icon-144x144.png')
+		link(rel='apple-touch-icon', sizes='152x152', href='/apple-touch-icon-152x152.png')
+		link(rel='apple-touch-icon', sizes='180x180', href='/apple-touch-icon-180x180.png')
+		link(rel='icon', type='image/png', href='/favicon-32x32.png', sizes='32x32')
+		link(rel='icon', type='image/png', href='/favicon-194x194.png', sizes='194x194')
+		link(rel='icon', type='image/png', href='/favicon-96x96.png', sizes='96x96')
+		link(rel='icon', type='image/png', href='/android-chrome-192x192.png', sizes='192x192')
+		link(rel='icon', type='image/png', href='/favicon-16x16.png', sizes='16x16')
+		link(rel='manifest', href='/android-chrome-manifest.json')
+		meta(name='msapplication-TileColor', content='#ffffff')
+		meta(name='msapplication-TileImage', content='/mstile-144x144.png')
+		meta(name='theme-color', content='#ffffff')
+		<!--[if IE]>
+		meta(http-equiv='imagetoolbar', content='no')
+		<![endif]-->
+	body
+		.page(itemscope='', itemtype='http://schema.org/Organization')
+			block header
+				.header
+					.header__in
+						h1.logo.logo_type_header
+							a(href='/')
+								img(src='img/logo.png', width='178', height='130', alt='«ВЕЛДТЕХМАШ-О»', title='«ВЕЛДТЕХМАШ-О»')
+						dl.contacts.contacts_content_phone.contacts_ctx_header
+							dt.contacts__title
+								span.badge
+									span.badge__text Телефоны:
+							dd.contacts__content(itemprop='telephone')
+								span.contacts__prefix +7(3532)
+								span.contacts__number 96-13-93
+							dd.contacts__content
+								span(itemprop='faxNumber')
+									span.contacts__prefix +7(3532)
+									span.contacts__number 75-85-69
+								span.contacts__remark (факс)
+							dt.contacts__title
+								span.badge
+									span.badge__text E-mail:
+							dd.contacts__content
+								a.contacts__e-mail(itemprop='email', href='mailto:wtm-o@mashweld.ru')
+									| wtm-o
+									span.contacts__special-char @
+									| mashweld.ru
+						block menu
+							+menu()
+			.main
+				.main__in
+					block content
+
+			block footer
+				.footer
+					.footer__in
+						.footer__info
+							.footer__logo
+								.logo.logo_type_footer
+									a(href='/')
+										img(src='img/logo_footer.png', width='107', height='60', alt='ООО «ВЕЛДТЕХМАШ-О»', title='ООО «ВЕЛДТЕХМАШ-О»')
+								.footer__copyright
+									| © ООО «
+									a(itemprop='url', href='http://mashweld.ru/')
+										span(itemprop='name') ВЕЛДТЕХМАШ-О
+									| », 2015.
+									br
+									span.visuallyhidden(itemprop='description') &nbsp; сварочное оборудование, материалы, з/ч, сервис
+							.footer__contacts
+								.contacts_content_address(itemprop='address', itemscope='', itemtype='http://schema.org/PostalAddress')
+									p
+										span(itemprop='postalCode') 462030
+										| , &nbsp;
+										span(itemprop='addressLocality') Россия, с. Октябрьское &nbsp;
+										span(itemprop='streetAddress') ул. Садовая, д. 38
+								dl.contacts.contacts_content_phone.contacts_ctx_footer
+									dt.contacts__title
+										span.badge
+											span.badge__text Телефоны:
+									dd.contacts__content(itemprop='telephone')
+										span.contacts__prefix +7(3532)
+										span.contacts__number 96-13-93
+									dd.contacts__content
+										span(itemprop='faxNumber')
+											span.contacts__prefix +7(3532)
+											span.contacts__number 75-85-69
+										span.contacts__remark (факс)
+		script.
+			!function () {
+				"use strict";
+				function b(a, b, c) {
+					a.addEventListener ? a.addEventListener(b, c, !1) : a.attachEvent && a.attachEvent("on" + b, c)
+				}
+
+				function c(a) {
+					return window.localStorage && localStorage.font_css_cache && localStorage.font_css_cache_file === a
+				}
+
+				function d() {
+					if (window.localStorage && window.XMLHttpRequest)if (c(a))e(localStorage.font_css_cache); else {
+						var d = new XMLHttpRequest;
+						d.open("GET", a, !0), d.onreadystatechange = function () {
+							4 === d.readyState && (e(d.responseText), localStorage.font_css_cache = d.responseText, localStorage.font_css_cache_file = a)
+						}, d.send()
+					} else {
+						var b = document.createElement("link");
+						b.href = a, b.rel = "stylesheet", b.type = "text/css", document.getElementsByTagName("head")[0].appendChild(b), document.cookie = "font_css_cache"
+					}
+				}
+
+				function e(a) {
+					var b = document.createElement("style");
+					b.setAttribute("type", "text/css"), b.styleSheet ? b.styleSheet.cssText = a : b.innerHTML = a, document.getElementsByTagName("head")[0].appendChild(b)
+				}
+
+				var a = "css/webfonts.css?ver=0.0.1";
+				window.localStorage && localStorage.font_css_cache || document.cookie.indexOf("font_css_cache") > -1 ? d() : b(window, "load", d)
+			}();
+		link(rel='stylesheet', href='css/styles.css')
+		link(rel='stylesheet', href='css/print.css', media='print')
+		script(src='js/vendor/modernizr-build.min.js')
+		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+		script.
+			window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\\/script>')
+		script(src='js/vendor/jquery.placeholder.min.js')
+		// <script src="js/main.js"></script>
+		// Yandex.Metrika counter
+		script(type='text/javascript').
+			(function (d, w, c) {
+				(w[c] = w[c] || []).push(function () {
+					try {
+						w.yaCounter28219856 = new Ya.Metrika({id: 28219856, webvisor: true, ut: "noindex"});
+					} catch (e) {
+					}
+				});
+				var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () {
+					n.parentNode.insertBefore(s, n);
+				};
+				s.type = "text/javascript";
+				s.async = true;
+				s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+				if (w.opera == "[object Opera]") {
+					d.addEventListener("DOMContentLoaded", f, false);
+				} else {
+					f();
+				}
+			})(document, window, "yandex_metrika_callbacks");
+		noscript
+			div
+				img(src='//mc.yandex.ru/watch/28219856?ut=noindex', style='position:absolute; left:-9999px;', alt='')
+		// /Yandex.Metrika counter
+

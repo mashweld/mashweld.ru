@@ -1,0 +1,61 @@
+extends ./_layout.jade
+
+block append globals
+	- var url = 'contacts.html'
+block menu
+	+menu({active: 'contacts'})
+
+block content
+	.section
+		.section__head
+			h2.section__title Контактная информация
+		.section__body
+			p
+				nobr ООО «Велдтехмаш-О»
+				br
+				acronym(title='Идентификационный номер налогоплательщика', lang='ru') ИНН
+				|  5637020364 КПП 563701001
+				br
+				| 462030, Оренбургская обл., Октябрьский район,
+				br
+				| с. Октябрьское, ул. Садовая, 38
+				br
+				| факс:
+				nobr 8 (3532) 75-85-69
+				br
+				| тел.
+				nobr 96-13-93
+				| ,
+				nobr 97-81-42
+				br
+				| моб.
+				nobr 8-912-846-13-93
+				br
+				nobr E-mail
+				| :
+				a(href='mailto:wtm-o@mashweld.ru')
+					nobr wtm-o
+					| @mashweld.ru
+				| ,
+				br
+				a(href='mailto:wtm-o@yandex.ru')
+					nobr wtm-o
+					| @yandex.ru
+				p
+					| ОГРН 1095658014540
+					br
+					| ОКПО 62364221
+					br
+					nobr Р/с
+					|  40702810305090000064 в Оренбургский РФ 
+					nobr ОАО «Россельхозбанк»
+					|  г. Оренбург
+					br
+					nobr К/с
+					|  30101810000000000816
+					br
+					| БИК 045354816
+				p
+					| Директор
+					nobr ООО «Велдтехмаш-О»
+					|  Рокол И.Е. действует на основании Устава

@@ -56,7 +56,7 @@
 .contacts_ctx_header {
 	float:right;
 	display:inline;
-	margin:6px 30px 20px 10px;
+	margin:6px 30px 50px 10px;
 	text-align:left;
 }
 .contacts_ctx_footer {
@@ -65,35 +65,28 @@
 	vertical-align:middle;
 	margin:0 auto
 }
+
+.contacts_content_address {
+	float:left
+	display:inline
+	margin:45px 10px 0 0
+	font-size:16px
+}
 /* contacts < */
 
 /* main menu > */
 .menu_type_main {
 	clearList();
-	clear:right;
-	float:right;
-	display:inline;
-	padding:0 10px 0 0;
-	margin:0 0 0 30px;
+	clear:both;
+	padding:0
+	margin:auto
 	font:$fontNull;
 	white-space:nowrap;
 	position:relative;
 
-	background:#4799e5;
-	background:url('../img/bg/gradients/menu-bg.png') repeat-x;
-
-	&:after,
-	>.b-after {
-		position:absolute;
-		content:'';
-		display:block;
-		width:29px;
-		height:46px;
-		top:50%;
-		left:-29px;
-		margin:-23px 0 0 0;
-		background:url('../img/bg/gradients/menu-arrow.png') no-repeat;
-	}
+	background:#8F222A;
+	background:rgba(143,34,42,.9);
+	/*background:url('../img/bg/gradients/menu-bg.png') repeat-x;*/
 
 	>.menu__item {
 		position:relative;
@@ -121,8 +114,8 @@
 			width:1px;
 			height:15px;
 			margin:-7px 0 0;
-			background:#083a7b;
-			background:rgba(8,58,124,.33);
+			background:#fff;
+			background:rgba(255,255,255,.33);
 			font:$fontNull;
 		}
 
@@ -133,21 +126,21 @@
 		margin:0;
 		padding:0 10px;
 		vertical-align:middle;
-		color:#ffffff;
+		color:#fff;
 		text-decoration:none;
 		white-space:normal;
 		font:500 12px/1 $fontDaxline;
 		line-height:46px;
 		min-height:46px;
 
-		text-shadow:1px 1px 2px #2360a4;
+		text-shadow:1px 1px 2px #000;
 		transition: background-color .2s ease-out;
 
 		&:hover {
 			background:#fff if !ie;
 			background:rgba(255,255,255,.15);
 			background:url('../img/bg/gradients/menu-hover-bg.png') if ie8;
-			c#000 if ie;
+			color:#000 if ie;
 		}
 	}
 	.menu__text-in {
@@ -160,11 +153,9 @@
 		background:#fff if !ie;
 		background:rgba(255,255,255,.15);
 		background:url('../img/bg/gradients/menu-hover-bg.png') if ie8;
-		c#000 if ie;
+		color:#000 if ie;
 		cursor:auto;
 	}
-
-    ie-after() if ie;
 }
 /* main menu < */
 
@@ -209,7 +200,7 @@
 		white-space:normal;
 		font:12px/38px $fontTahoma;
 
-		text-shadow:1px 1px 2px #2360a4;
+		text-shadow:1px 1px 2px #000;
 		transition: background-color .2s ease-out;
 
 		&:hover {
@@ -353,7 +344,7 @@
 	>input {
 		text-transform:uppercase;
 		font:500 12px/1 $fontDaxline;
-		text-shadow:1px 1px 1px #2360a4;
+		text-shadow:1px 1px 1px #000;
 	}
 }
 /* search form < */
@@ -928,7 +919,8 @@
 
 	}
 }
-.product_type_detail {
+.product_type_detail,
+.pure-content {
 	.box__ico {
 		position:static;
 		float:right;
@@ -965,10 +957,12 @@
 		}
 
 		thead {
+			th,
 			td {
 				color:#fff;
 				background:#008cba;
 				border:1px solid #a5d6e7;
+				padding:8px 6px;
 			}
 		}
 		tbody {

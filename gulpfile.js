@@ -5,6 +5,7 @@ var gulp = require('gulp'),
 	$ = require('gulp-load-plugins')();
 
 var paths = {
+	templates: ['src/templates/*.jade', '!src/templates/_*.jade'],
 	scripts: ['src/js/**/*.js'],
 	styles: ['src/styl/**/*.{css,styl}', '!src/styl/*.{css,css.map}'],
 	assets: ['src/img/**/*', 'src/favicons/**/*']
@@ -17,8 +18,8 @@ gulp.task('clean', function (cb) {
 });
 
 // Copy assets
-gulp.task('copy', ['css', 'images', 'fonts'], function (cb) {
-	return gulp.src(['src/**/*', '!src/styl/', '!src/styl/**/*', '!src/css/*.css.map'])
+gulp.task('copy', ['templates', 'css', 'images', 'fonts'], function (cb) {
+	return gulp.src(['src/**/*', '!src/templates/', '!src/styl/', '!src/styl/**/*', '!src/css/*.css.map'])
 		.pipe(gulp.dest('www'));
 });
 
@@ -32,7 +33,10 @@ gulp.task('css', function (cb) {
 		.pipe($.stylus({
 			paths: ['src/styl/utilities', 'node_modules'],
 			define: {
-				ie: false
+				modern: true,
+				ie: false,
+				ie8: false,
+				ie9: false
 			},
 			import: [
 				'variables',
@@ -53,6 +57,19 @@ gulp.task('css', function (cb) {
 			sourceRoot: '.'
 		}))
 		.pipe(gulp.dest('src/css'));
+});
+
+// HTML
+gulp.task('templates', function(cb) {
+	return gulp.src(paths.templates)
+		.pipe($.plumber())
+		.pipe($.jade({
+			locals: {
+
+			},
+			pretty: true
+		}))
+		.pipe(gulp.dest('src'));
 });
 
 // Minify html
@@ -76,13 +93,12 @@ gulp.task('minify-css', function (cb) {
 
 // Optimize images
 gulp.task('images', function () {
-	return gulp.src('src/img/**/*')
+	return gulp.src('src/img/**/*.{jpg,png,gif}')
 		.pipe($.plumber())
-		//.pipe($.newer('src/img'))
-		.pipe($.imagemin({
-			progressive: true
-		}))
-		.pipe(gulp.dest('src/img'));
+		.pipe($.newer('src/img'))
+		.pipe($.imagemin({optimizationLevel: 7, progressive: true, interlaced: true}))
+		.pipe(gulp.dest('src/img'))/*
+		.pipe($.size({showFiles: true}))*/;
 });
 
 // Prepare webfonts
@@ -99,6 +115,7 @@ gulp.task('fonts', function() {
 gulp.task('watch', function () {
 	//gulp.watch(paths.scripts, ['js']);
 	gulp.watch(paths.styles, ['css']);
+	gulp.watch(paths.templates[0], ['templates']);
 	gulp.watch(paths.assets, ['copy']);
 });
 
