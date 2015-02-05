@@ -61,14 +61,25 @@ gulp.task('css', function (cb) {
 
 // HTML
 gulp.task('templates', function(cb) {
+	var filter = $.filter(function (file) {
+		return !/(src\/templates\/index\.html)/.test(file.path);
+	});
+
 	return gulp.src(paths.templates)
 		.pipe($.plumber())
 		.pipe($.jade({
-			locals: {
-
-			},
 			pretty: true
 		}))
+		.pipe($.rename(function (path) {
+			if (path.basename === 'index') {
+				return path;
+			}
+			path.dirname += "/"+path.basename;
+			path.basename = "index";
+		}))
+		.pipe(filter)
+		.pipe($.replace(/((src|href)=)(\"|\')((img|css|js))/g, '$1$3../$4'))
+		.pipe(filter.restore())
 		.pipe(gulp.dest('src'));
 });
 
@@ -76,9 +87,11 @@ gulp.task('templates', function(cb) {
 gulp.task('minify-html', function (cb) {
 	return gulp.src('www/*.html')
 		.pipe($.plumber())
+		.pipe($.replace('http://192.168.57.1/projects/side/mashweld/src/', '/'))
 		.pipe($.htmlmin({
 			collapseWhitespace: true,
-			removeComments: true
+			removeComments: true,
+			minifyJS: true
 		}))
 		.pipe(gulp.dest('www'));
 });

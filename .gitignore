@@ -4,5 +4,5 @@ dist/
 node_modules/
 assets
 src/css/styles.css*
-src/*.html
+src/**/*.html
 src/css/webfonts.css

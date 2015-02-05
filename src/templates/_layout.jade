@@ -1,5 +1,10 @@
 include ../../node_modules/bemto.jade/bemto.jade
 
+block globals
+	- var title = 'ООО «ВЕЛДТЕХМАШ-О»'
+	- var url = ''
+	- var local_path = 'http://192.168.57.1/projects/side/mashweld/src/'
+
 mixin menu(obj)
 	- var page_index = {name: 'index', text: 'О компании'}
 	- var page_partners = {name: 'partners', text: 'Поставляемое оборудование'}
@@ -12,12 +17,8 @@ mixin menu(obj)
 		each item in items
 			- var current = item.name === active_item ? 'menu__item_state_active': ''
 			li(class='menu__item '+current)
-				a.menu__text(href=(item.name === 'index') ? '/' : item.name+'.html')
+				a.menu__text(href=(item.name === 'index') ? local_path : local_path+item.name+'/')
 					span.menu__text-in #{item.text}
-
-block globals
-	- var title = 'ООО «ВЕЛДТЕХМАШ-О»'
-	- var url = ''
 
 doctype html
 html.no-js
@@ -60,7 +61,7 @@ html.no-js
 				.header
 					.header__in
 						h1.logo.logo_type_header
-							a(href='/')
+							a(href=local_path)
 								img(src='img/logo.png', width='178', height='130', alt='«ВЕЛДТЕХМАШ-О»', title='«ВЕЛДТЕХМАШ-О»')
 						dl.contacts.contacts_content_phone.contacts_ctx_header
 							dt.contacts__title
@@ -94,7 +95,7 @@ html.no-js
 						.footer__info
 							.footer__logo
 								.logo.logo_type_footer
-									a(href='/')
+									a(href=local_path)
 										img(src='img/logo_footer.png', width='107', height='60', alt='ООО «ВЕЛДТЕХМАШ-О»', title='ООО «ВЕЛДТЕХМАШ-О»')
 								.footer__copyright
 									| © ООО «
