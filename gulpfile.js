@@ -85,7 +85,7 @@ gulp.task('templates', function(cb) {
 
 // Minify html
 gulp.task('minify-html', function (cb) {
-	return gulp.src('www/*.html')
+	return gulp.src('www/**/*.html')
 		.pipe($.plumber())
 		.pipe($.replace('http://192.168.57.1/projects/side/mashweld/src/', '/'))
 		.pipe($.htmlmin({
