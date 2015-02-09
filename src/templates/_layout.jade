@@ -14,12 +14,13 @@ mixin menu(obj)
 	- var menu_type = obj && obj.type ?  'menu_type_'+obj.type : 'menu_type_main'
 	- var active_item = obj && obj.active || 'index'
 
-	ul(class='menu '+menu_type)
-		each item in items
-			- var current = item.name === active_item ? 'menu__item_state_active': ''
-			li(class='menu__item '+current)
-				a.menu__text(href=(item.name === 'index') ? local_path : local_path+item.name+'/')
-					span.menu__text-in #{item.text}
+	nav
+		ul(class='menu '+menu_type)
+			each item in items
+				- var current = item.name === active_item ? 'menu__item_state_active': ''
+				li(class='menu__item '+current)
+					a.menu__text(href=(item.name === 'index') ? local_path : local_path+item.name+'/')
+						span.menu__text-in #{item.text}
 
 doctype html
 html.no-js
