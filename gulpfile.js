@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
 	del = require('del'),
+	path = require('path'),
+	dir = path.relative('/var/www/', __dirname)+'/src/';
 	runSequence = require('run-sequence'),
 	buildBranch = require('buildbranch'),
 	$ = require('gulp-load-plugins')();
@@ -68,6 +70,9 @@ gulp.task('templates', function(cb) {
 	return gulp.src(paths.templates)
 		.pipe($.plumber())
 		.pipe($.jade({
+			data: {
+				dirname: dir
+			},
 			pretty: true
 		}))
 		.pipe($.rename(function (path) {
@@ -87,7 +92,7 @@ gulp.task('templates', function(cb) {
 gulp.task('minify-html', function (cb) {
 	return gulp.src('www/**/*.html')
 		.pipe($.plumber())
-		.pipe($.replace('http://192.168.57.1/projects/side/mashweld/src/', '/'))
+		.pipe($.replace(dir, ''))
 		.pipe($.htmlmin({
 			collapseWhitespace: true,
 			removeComments: true,

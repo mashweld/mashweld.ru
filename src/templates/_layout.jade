@@ -3,7 +3,8 @@ include ../../node_modules/bemto.jade/bemto.jade
 block globals
 	- var title = 'ООО «ВЕЛДТЕХМАШ-О»'
 	- var url = ''
-	- var local_path = 'http://192.168.57.1/projects/side/mashweld/src/'
+	- var local_path = '/'+locals.dirname
+
 
 mixin menu(obj)
 	- var page_index = {name: 'index', text: 'О компании'}
