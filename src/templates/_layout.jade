@@ -10,7 +10,9 @@ mixin menu(obj)
 	- var page_index = {name: 'index', text: 'О компании'}
 	- var page_partners = {name: 'partners', text: 'Поставляемое оборудование'}
 	- var page_contacts = {name: 'contacts', text: 'Контакты'}
-	- var items = [page_index, page_partners, page_contacts]
+	- var page_certificates = {name: 'certificates', text: 'Сертификаты'}
+
+	- var items = [page_index, page_partners, page_certificates, page_contacts]
 	- var menu_type = obj && obj.type ?  'menu_type_'+obj.type : 'menu_type_main'
 	- var active_item = obj && obj.active || 'index'
 
@@ -125,68 +127,72 @@ html.no-js
 											span.contacts__prefix +7(3532)
 											span.contacts__number 75-85-69
 										span.contacts__remark (факс)
-		script.
-			!function () {
-				"use strict";
-				function b(a, b, c) {
-					a.addEventListener ? a.addEventListener(b, c, !1) : a.attachEvent && a.attachEvent("on" + b, c)
-				}
 
-				function c(a) {
-					return window.localStorage && localStorage.font_css_cache && localStorage.font_css_cache_file === a
-				}
+		block footer_styles
+			link(rel='stylesheet', href='css/styles.css')
+			link(rel='stylesheet', href='css/print.css', media='print')
 
-				function d() {
-					if (window.localStorage && window.XMLHttpRequest)if (c(a))e(localStorage.font_css_cache); else {
-						var d = new XMLHttpRequest;
-						d.open("GET", a, !0), d.onreadystatechange = function () {
-							4 === d.readyState && (e(d.responseText), localStorage.font_css_cache = d.responseText, localStorage.font_css_cache_file = a)
-						}, d.send()
+		block footer_scripts
+			script.
+				!function () {
+					"use strict";
+					function b(a, b, c) {
+						a.addEventListener ? a.addEventListener(b, c, !1) : a.attachEvent && a.attachEvent("on" + b, c)
+					}
+
+					function c(a) {
+						return window.localStorage && localStorage.font_css_cache && localStorage.font_css_cache_file === a
+					}
+
+					function d() {
+						if (window.localStorage && window.XMLHttpRequest)if (c(a))e(localStorage.font_css_cache); else {
+							var d = new XMLHttpRequest;
+							d.open("GET", a, !0), d.onreadystatechange = function () {
+								4 === d.readyState && (e(d.responseText), localStorage.font_css_cache = d.responseText, localStorage.font_css_cache_file = a)
+							}, d.send()
+						} else {
+							var b = document.createElement("link");
+							b.href = a, b.rel = "stylesheet", b.type = "text/css", document.getElementsByTagName("head")[0].appendChild(b), document.cookie = "font_css_cache"
+						}
+					}
+
+					function e(a) {
+						var b = document.createElement("style");
+						b.setAttribute("type", "text/css"), b.styleSheet ? b.styleSheet.cssText = a : b.innerHTML = a, document.getElementsByTagName("head")[0].appendChild(b)
+					}
+
+					var a = "css/webfonts.css?ver=0.0.1";
+					window.localStorage && localStorage.font_css_cache || document.cookie.indexOf("font_css_cache") > -1 ? d() : b(window, "load", d)
+				}();
+			script(src='js/vendor/modernizr-build.min.js')
+			script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+			script.
+				window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\\/script>')
+			script(src='js/vendor/jquery.placeholder.min.js')
+			// <script src="js/main.js"></script>
+			// Yandex.Metrika counter
+			script(type='text/javascript').
+				(function (d, w, c) {
+					(w[c] = w[c] || []).push(function () {
+						try {
+							w.yaCounter28219856 = new Ya.Metrika({id: 28219856, webvisor: true, ut: "noindex"});
+						} catch (e) {
+						}
+					});
+					var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () {
+						n.parentNode.insertBefore(s, n);
+					};
+					s.type = "text/javascript";
+					s.async = true;
+					s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+					if (w.opera == "[object Opera]") {
+						d.addEventListener("DOMContentLoaded", f, false);
 					} else {
-						var b = document.createElement("link");
-						b.href = a, b.rel = "stylesheet", b.type = "text/css", document.getElementsByTagName("head")[0].appendChild(b), document.cookie = "font_css_cache"
+						f();
 					}
-				}
-
-				function e(a) {
-					var b = document.createElement("style");
-					b.setAttribute("type", "text/css"), b.styleSheet ? b.styleSheet.cssText = a : b.innerHTML = a, document.getElementsByTagName("head")[0].appendChild(b)
-				}
-
-				var a = "css/webfonts.css?ver=0.0.1";
-				window.localStorage && localStorage.font_css_cache || document.cookie.indexOf("font_css_cache") > -1 ? d() : b(window, "load", d)
-			}();
-		link(rel='stylesheet', href='css/styles.css')
-		link(rel='stylesheet', href='css/print.css', media='print')
-		script(src='js/vendor/modernizr-build.min.js')
-		script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-		script.
-			window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\\/script>')
-		script(src='js/vendor/jquery.placeholder.min.js')
-		// <script src="js/main.js"></script>
-		// Yandex.Metrika counter
-		script(type='text/javascript').
-			(function (d, w, c) {
-				(w[c] = w[c] || []).push(function () {
-					try {
-						w.yaCounter28219856 = new Ya.Metrika({id: 28219856, webvisor: true, ut: "noindex"});
-					} catch (e) {
-					}
-				});
-				var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () {
-					n.parentNode.insertBefore(s, n);
-				};
-				s.type = "text/javascript";
-				s.async = true;
-				s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
-				if (w.opera == "[object Opera]") {
-					d.addEventListener("DOMContentLoaded", f, false);
-				} else {
-					f();
-				}
-			})(document, window, "yandex_metrika_callbacks");
-		noscript
-			div
-				img(src='//mc.yandex.ru/watch/28219856?ut=noindex', style='position:absolute; left:-9999px;', alt='')
-		// /Yandex.Metrika counter
+				})(document, window, "yandex_metrika_callbacks");
+			noscript
+				div
+					img(src='//mc.yandex.ru/watch/28219856?ut=noindex', style='position:absolute; left:-9999px;', alt='')
+			// /Yandex.Metrika counter
 

@@ -949,6 +949,7 @@
 		color:#767676;
 		font:11px/15px $fontTahoma;
 
+		th,
 		td {
 			border:0;
 			border-top:1px dashed #b2b2b2;
@@ -967,6 +968,7 @@
 		}
 		tbody {
 			tr:nth-child(even) {
+				th,
 				td {
 					background:#d8edf4;
 					background:rgba(0,137,183,.15);
@@ -1011,11 +1013,44 @@
 }
 /* wrapper < */
 
+/* thumb-list > */
+.thumb-list {
+	clearfix()
+	clearList()
+	margin:-10px 0 0 -10px
+	padding:0
+
+	&__item {
+		display:inline-block
+		vertical-align:top
+		margin:10px 0 0 10px
+		padding:0
+		position:relative
+	}
+	&__thumb {
+		display:block
+		position:static
+		overflow:hidden
+
+		&:before {
+			display:block
+			content:''
+			position:absolute
+			top:0
+			right:0
+			left:0
+			bottom:0
+			border:#fff solid 1px
+		}
+	}
+}
+/* thumb-list < */
+
 @media screen and (max-width: 960px) {
 	.contacts_content_address {
 		display:none
 	}
-	}
+}
 
 @media screen and (max-width: 560px) {
 	.logo,

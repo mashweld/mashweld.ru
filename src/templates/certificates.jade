@@ -1,0 +1,48 @@
+extends ./_layout.jade
+
+block append globals
+	- var url = 'certificates.html'
+block menu
+	+menu({active: 'certificates'})
+
+block content
+	.section
+		.section__head
+			h2.section__title Сертификаты
+		.section__body
+			+b('ul').thumb-list
+				+e('li').item
+					+e('a').thumb#certificate_ptk.fancybox(rel='certificates', href='img/content/certificates/ptk.jpg', title='Официальный дилер компании ООО «ПТК». ')
+						+e('img').image(src='img/content/certificates/ptk_thumb.jpg', width='240', height='170', alt='Официальный дилер компании ООО «ПТК». ')
+				+e('li').item
+					+e('a').thumb#certificate_ewm.fancybox(rel='certificates', href='img/content/certificates/ewm.jpg', title="Официальный дилер продукции EWM")
+						+e('img').image(src='img/content/certificates/ewm_thumb.jpg', width='240', height='168', alt='Официальный дилер продукции EWM')
+
+block append footer_styles
+	link(rel='stylesheet', href='js/vendor/fancybox/jquery.fancybox.css')
+block append footer_scripts
+	script(src='js/vendor/fancybox/jquery.fancybox.pack.js')
+	script.
+		$(function() {
+			var thisHash = window.location.hash;
+
+			$(".fancybox").fancybox({
+				tpl: {
+					next: '<a title="Следующий сертификат" class="fancybox-nav fancybox-next"><span></span></a>',
+					prev: '<a title="Предыдущий сертификат" class="fancybox-nav fancybox-prev"><span></span></a>'
+				},
+				beforeShow: function() {
+					var id = this.element.attr("id")
+					if (id) {
+						window.location.hash = id;
+					}
+				},
+				afterClose: function() {
+					window.location.hash = thisHash || '';
+				}
+			});
+
+			if (thisHash) {
+				$(thisHash).trigger('click');
+			}
+		});
