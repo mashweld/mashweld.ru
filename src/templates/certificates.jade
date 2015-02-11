@@ -23,26 +23,67 @@ block append footer_styles
 block append footer_scripts
 	script(src='js/vendor/fancybox/jquery.fancybox.pack.js')
 	script.
-		$(function() {
-			var thisHash = window.location.hash;
+		$(function () {
+			var initialHash = window.location.hash,
+					gallery = $(".fancybox[rel='certificates']"),
+					items = [];
 
-			$(".fancybox").fancybox({
+			if (!initialHash) {
+				removeHash();
+			}
+
+			// Get id's list
+			gallery.each(function (i, item) {
+				items.push('#'+$(item).attr("id"))
+			});
+
+			gallery.fancybox({
 				tpl: {
 					next: '<a title="Следующий сертификат" class="fancybox-nav fancybox-next"><span></span></a>',
 					prev: '<a title="Предыдущий сертификат" class="fancybox-nav fancybox-prev"><span></span></a>'
 				},
-				beforeShow: function() {
-					var id = this.element.attr("id")
+				beforeShow: function () {
+					var id = this.element.attr("id");
+
 					if (id) {
 						window.location.hash = id;
 					}
 				},
-				afterClose: function() {
-					window.location.hash = thisHash || '';
+				beforeClose: function () {
+					var hash = window.location.hash;
+					if (initialHash && contains(items, hash)) {
+						window.location.hash = initialHash;
+					} else {
+						removeHash();
+					}
 				}
 			});
 
-			if (thisHash) {
-				$(thisHash).trigger('click');
+			if (initialHash) {
+				$(initialHash).trigger('click');
+			}
+
+			function removeHash() {
+				var scrollV, scrollH, loc = window.location;
+				if ("pushState" in history)
+					history.pushState("", document.title, loc.pathname + loc.search);
+				else {
+					// Prevent scrolling by storing the page's current scroll offset
+					scrollV = document.body.scrollTop;
+					scrollH = document.body.scrollLeft;
+					loc.hash = "";
+					// Restore the scroll offset, should be flicker free
+					document.body.scrollTop = scrollV;
+					document.body.scrollLeft = scrollH;
+				}
+			}
+
+			function contains(a, obj) {
+				for (var i = 0; i < a.length; i++) {
+					if (a[i] === obj) {
+						return true;
+					}
+				}
+				return false;
 			}
 		});
