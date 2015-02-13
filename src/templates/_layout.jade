@@ -161,7 +161,7 @@ html.no-js
 						b.setAttribute("type", "text/css"), b.styleSheet ? b.styleSheet.cssText = a : b.innerHTML = a, document.getElementsByTagName("head")[0].appendChild(b)
 					}
 
-					var a = "css/webfonts.css?ver=0.0.1";
+					var a = "#{local_path}css/webfonts.css?ver=0.0.1";
 					window.localStorage && localStorage.font_css_cache || document.cookie.indexOf("font_css_cache") > -1 ? d() : b(window, "load", d)
 				}();
 			script(src='js/vendor/modernizr-build.min.js')
