@@ -7,7 +7,6 @@
     "url": "git@github.com:mashweld/mashweld.github.io.git"
   },
   "devDependencies": {
-    "bemto": "git+ssh://git@github.com/kizu/bemto.git",
     "borschik": "^1.3.2",
     "borschik-tech-cleancss": "^2.0.0",
     "buildbranch": "0.0.1",
@@ -31,5 +30,8 @@
     "gulp-stylus": "^2.0.0",
     "merge-stream": "^0.1.7",
     "run-sequence": "^1.0.2"
+  },
+  "dependencies": {
+    "bemto.jade": "git+ssh://git@github.com/kizu/bemto.git#v0.2.3"
   }
 }
