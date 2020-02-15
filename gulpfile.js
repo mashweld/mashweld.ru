@@ -2,8 +2,8 @@ var gulp = require('gulp'),
 	del = require('del'),
 	path = require('path'),
 	dir = path.relative('/var/www/', __dirname)+'/src/';
-	runSequence = require('run-sequence'),
-	buildBranch = require('buildbranch'),
+	runSequence = require('run-sequence');
+	buildBranch = require('buildbranch');
 	$ = require('gulp-load-plugins')();
 
 var paths = {
@@ -16,7 +16,7 @@ var paths = {
 
 //Clean build
 gulp.task('clean', function (cb) {
-	del(['./www'], cb);
+	return del(['./www'], cb);
 });
 
 // Copy assets
