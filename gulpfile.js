@@ -31,7 +31,6 @@ gulp.task('css', function (cb) {
 		.pipe($.sourcemaps.init({
 			loadMaps: true
 		}))
-		.pipe($.plumber())
 		.pipe($.stylus({
 			paths: ['src/styl/utilities', 'node_modules'],
 			define: {
@@ -68,7 +67,6 @@ gulp.task('templates', function(cb) {
 	});
 
 	return gulp.src(paths.templates)
-		.pipe($.plumber())
 		.pipe($.jade({
 			data: {
 				dirname: dir
@@ -91,7 +89,6 @@ gulp.task('templates', function(cb) {
 // Minify html
 gulp.task('minify-html', function (cb) {
 	return gulp.src('www/**/*.html')
-		.pipe($.plumber())
 		.pipe($.replace(dir, ''))
 		.pipe($.htmlmin({
 			collapseWhitespace: true,
@@ -104,7 +101,6 @@ gulp.task('minify-html', function (cb) {
 // Minify css
 gulp.task('minify-css', function (cb) {
 	return gulp.src('www/css/*.css')
-		.pipe($.plumber())
 		.pipe($.borschik({tech: 'cleancss'}))
 		.pipe(gulp.dest('www/css'));
 });
@@ -112,7 +108,6 @@ gulp.task('minify-css', function (cb) {
 // Optimize images
 gulp.task('images', function () {
 	return gulp.src('src/img/**/*.{jpg,png,gif}')
-		.pipe($.plumber())
 		.pipe($.newer('src/img'))
 		.pipe($.imagemin({optimizationLevel: 7, progressive: true, interlaced: true}))
 		.pipe(gulp.dest('src/img'))/*
@@ -122,7 +117,6 @@ gulp.task('images', function () {
 // Prepare webfonts
 gulp.task('fonts', function() {
 	return gulp.src('src/fonts/webfonts.css')
-		.pipe($.plumber())
 		.pipe($.cssBase64({
 			maxWeightResource: 131072
 		}))
