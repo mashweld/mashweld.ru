@@ -21,7 +21,7 @@ gulp.task('clean', function (cb) {
 
 // Copy assets
 gulp.task('copy', ['templates', 'css', 'images', 'fonts'], function (cb) {
-	return gulp.src(['src/**/*', '!src/templates/', '!src/styl/', '!src/styl/**/*', '!src/css/*.css.map'])
+	return gulp.src(['src/**/*', '!src/templates/', '!src/templates/*', '!src/styl/', '!src/styl/**/*', '!src/css/*.css.map'])
 		.pipe(gulp.dest('www'));
 });
 
