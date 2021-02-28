@@ -6,14 +6,6 @@ var gulp = require('gulp'),
 	buildBranch = require('buildbranch');
 	$ = require('gulp-load-plugins')();
 
-var paths = {
-	templates: ['src/templates/*.jade', '!src/templates/_*.jade'],
-	scripts: ['src/js/**/*.js'],
-	styles: ['src/styl/**/*.{css,styl}', '!src/styl/*.{css,css.map}'],
-	assets: ['src/img/**/*', 'src/favicons/**/*']
-
-};
-
 //Clean build
 gulp.task('clean', function (cb) {
 	return del(['./www'], cb);
@@ -66,7 +58,7 @@ gulp.task('templates', function(cb) {
 		return !/(src\/templates\/index\.html)/.test(file.path);
 	});
 
-	return gulp.src(paths.templates)
+	return gulp.src(['src/templates/*.jade', '!src/templates/_*.jade'])
 		.pipe($.jade({
 			data: {
 				dirname: dir
@@ -125,10 +117,7 @@ gulp.task('fonts', function() {
 
 // Watch
 gulp.task('watch', function () {
-	//gulp.watch(paths.scripts, ['js']);
-	gulp.watch(paths.styles, ['css']);
-	gulp.watch(paths.templates[0], ['templates']);
-	gulp.watch(paths.assets, ['copy']);
+	gulp.watch(['src/**/*'], ['default']);
 });
 
 gulp.task('default', function (cb) {
