@@ -2,6 +2,10 @@
   "name": "mashweld.ru",
   "version": "0.0.1",
   "description": "Company website",
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:mashweld/mashweld.github.io.git"
