@@ -1,10 +1,11 @@
-var gulp = require('gulp'),
-	del = require('del'),
-	path = require('path'),
-	dir = path.relative('/var/www/', __dirname)+'/src/';
-	runSequence = require('run-sequence');
-	buildBranch = require('buildbranch');
-	$ = require('gulp-load-plugins')();
+var gulp = require('gulp');
+var del = require('del');
+var path = require('path');
+var dir = path.relative('/var/www/', __dirname)+'/src/';
+var runSequence = require('run-sequence');
+var buildBranch = require('buildbranch');
+var $ = require('gulp-load-plugins')();
+var browserSync = require("browser-sync");
 
 //Clean build
 gulp.task('clean', function (cb) {
@@ -115,9 +116,18 @@ gulp.task('fonts', function() {
 		.pipe(gulp.dest('src/css/'));
 });
 
+// Start BrowserSync
+gulp.task('browser-sync', function () {
+  browserSync({
+    server: {
+      baseDir: './www',
+    }
+  });
+});
+
 // Watch
-gulp.task('watch', function () {
-	gulp.watch(['src/**/*'], ['default']);
+gulp.task('watch', ['browser-sync'], function () {
+	gulp.watch(['src/**/*'], ['default'], browserSync.reload);
 });
 
 gulp.task('default', function (cb) {

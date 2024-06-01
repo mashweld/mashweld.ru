@@ -13,6 +13,7 @@
   "devDependencies": {
     "borschik": "^1.8.0",
     "borschik-tech-cleancss": "^2.1.0",
+    "browser-sync": "^1.9.2",
     "buildbranch": "0.0.3",
     "del": "^5.1.0",
     "gulp": "^3.9.1",
