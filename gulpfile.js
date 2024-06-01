@@ -50,7 +50,7 @@ gulp.task('css', function (cb) {
 			includeContent: false,
 			sourceRoot: '.'
 		}))
-		.pipe(gulp.dest('src/css'));
+		.pipe(gulp.dest('www/css'));
 });
 
 // HTML
@@ -76,7 +76,7 @@ gulp.task('templates', function(cb) {
 		.pipe(filter)
 		.pipe($.replace(/((src|href)=)(\"|\')((img|css|js))/g, '$1$3../$4'))
 		.pipe(filter.restore())
-		.pipe(gulp.dest('src'));
+		.pipe(gulp.dest('www'));
 });
 
 // Minify html
@@ -103,7 +103,7 @@ gulp.task('images', function () {
 	return gulp.src('src/img/**/*.{jpg,png,gif}')
 		.pipe($.newer('src/img'))
 		.pipe($.imagemin({optimizationLevel: 7, progressive: true, interlaced: true}))
-		.pipe(gulp.dest('src/img'))/*
+		.pipe(gulp.dest('www/img'))/*
 		.pipe($.size({showFiles: true}))*/;
 });
 
@@ -113,7 +113,7 @@ gulp.task('fonts', function() {
 		.pipe($.cssBase64({
 			maxWeightResource: 131072
 		}))
-		.pipe(gulp.dest('src/css/'));
+		.pipe(gulp.dest('www/css/'));
 });
 
 // Start BrowserSync
