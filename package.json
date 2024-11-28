@@ -36,6 +36,6 @@
     "run-sequence": "^2.2.1"
   },
   "dependencies": {
-    "bemto.jade": "git+ssh://git@github.com/kizu/bemto.git#v0.2.3"
+    "bemto.jade": "https://github.com/kizu/bemto#98a4798"
   }
 }
