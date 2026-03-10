@@ -50,7 +50,7 @@ function templates() {
 
 function images() {
 	return gulp.src('src/img/**/*.{jpg,png,gif}')
-		.pipe($.newer('src/img'))
+		.pipe($.newer('www/img'))
 		.pipe($.imagemin([
 			$.imagemin.gifsicle({ interlaced: true }),
 			$.imagemin.mozjpeg({ quality: 85, progressive: true }),
@@ -70,7 +70,9 @@ function copy() {
 		'src/**/*',
 		'!src/templates/', '!src/templates/*',
 		'!src/styl/', '!src/styl/**/*',
-		'!src/css/*.css.map'
+		'!src/css/*.css.map',
+		'!src/img/', '!src/img/**',
+		'!src/fonts/webfonts.css'
 	]).pipe(gulp.dest('www'));
 }
 
