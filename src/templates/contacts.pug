@@ -1,4 +1,4 @@
-extends ./_layout.jade
+extends ./_layout.pug
 
 block append globals
 	- var url = 'contacts.html'
@@ -22,13 +22,9 @@ block content
 				br
 				nobr 8 (3532) 97-81-42
 				br
-				| тел.:&nbsp;
-				nobr 96-13-93
-				| ,&nbsp;
-				nobr 97-81-42
+				!= 'тел.:&nbsp;<nobr>96-13-93</nobr>,&nbsp;<nobr>97-81-42</nobr>'
 				br
-				| моб.:&nbsp;
-				nobr 8-912-846-13-93
+				!= 'моб.:&nbsp;<nobr>8-912-846-13-93</nobr>'
 				br
 				| E-mail:&nbsp;
 				a(href='mailto:wtm-o@mashweld.ru')
