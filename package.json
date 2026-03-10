@@ -37,8 +37,5 @@
     "gulp-replace": "1.1.4",
     "gulp-sourcemaps": "3.0.0",
     "gulp-stylus": "2.7.1"
-  },
-  "dependencies": {
-    "bemto.jade": "https://github.com/kizu/bemto#98a4798"
   }
 }
