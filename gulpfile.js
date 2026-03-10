@@ -5,6 +5,9 @@ var dir = path.relative('/var/www/', __dirname)+'/src/';
 var ghPages = require('gh-pages');
 var $ = require('gulp-load-plugins')();
 var browserSync = require('browser-sync').create();
+var autoprefixer = require('autoprefixer');
+var cssnano = require('cssnano');
+var fs = require('fs');
 
 function clean() {
 	return del(['./www']);
@@ -19,9 +22,9 @@ function css() {
 			import: ['variables', 'mixins'],
 			sourcemap: { inline: true, sourceRoot: '.', basePath: 'src/css' }
 		}))
-		.pipe($.autoprefixer({
-			overrideBrowserslist: ['> 1%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'IE > 8']
-		}))
+		.pipe($.postcss([
+			autoprefixer({ overrideBrowserslist: ['> 1%', 'last 2 versions', 'Firefox ESR'] })
+		]))
 		.pipe($.sourcemaps.write('.', { includeContent: false, sourceRoot: '.' }))
 		.pipe(gulp.dest('www/css'));
 }
@@ -59,27 +62,41 @@ function images() {
 		.pipe(gulp.dest('www/img'));
 }
 
+var fontMimeTypes = {
+	woff: 'font/woff', woff2: 'font/woff2',
+	ttf: 'font/ttf', eot: 'application/vnd.ms-fontobject',
+	otf: 'font/otf', svg: 'image/svg+xml'
+};
+
 function fonts() {
 	return gulp.src('src/fonts/webfonts.css')
-		.pipe($.cssBase64({ maxWeightResource: 131072 }))
+		.pipe($.replace(/url\(['"]?([^'")]+)['"]?\)/g, function (match, fontPath) {
+			var fullPath = path.resolve('src/fonts', fontPath);
+			if (!fs.existsSync(fullPath)) return match;
+			var ext = path.extname(fullPath).slice(1).toLowerCase();
+			var mime = fontMimeTypes[ext] || 'application/octet-stream';
+			var data = fs.readFileSync(fullPath).toString('base64');
+			return 'url(data:' + mime + ';base64,' + data + ')';
+		}))
 		.pipe(gulp.dest('www/css/'));
 }
 
 function copy() {
 	return gulp.src([
 		'src/**/*',
-		'!src/templates/', '!src/templates/*',
-		'!src/styl/', '!src/styl/**/*',
-		'!src/css/*.css.map',
-		'!src/img/', '!src/img/**',
-		'!src/fonts/webfonts.css'
+		'!src/templates/**',
+		'!src/styl/**',
+		'!src/vendor/**',
+		'!src/img/**',
+		'!src/fonts/webfonts.css',
+		'!src/css/*.css.map'
 	]).pipe(gulp.dest('www'));
 }
 
 function minifyHtml() {
 	return gulp.src('www/**/*.html')
 		.pipe($.replace(dir, ''))
-		.pipe($.htmlmin({
+		.pipe($.htmlMinifierTerser({
 			collapseWhitespace: true,
 			removeComments: true,
 			minifyJS: true
@@ -89,7 +106,7 @@ function minifyHtml() {
 
 function minifyCss() {
 	return gulp.src('www/css/*.css')
-		.pipe($.cleanCss())
+		.pipe($.postcss([cssnano()]))
 		.pipe(gulp.dest('www/css'));
 }
 
