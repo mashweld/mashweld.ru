@@ -1,13 +1,11 @@
-const path = require('path');
-
 module.exports = {
-  testDir: '.',
-  snapshotDir: './screenshots',
+  testDir: './test',
+  snapshotDir: './test/screenshots',
   use: {
     baseURL: 'http://localhost:3500',
   },
   webServer: {
-    command: 'npx serve ../www --listen 3500 --no-clipboard',
+    command: 'npx --yes serve www --listen 3500 --no-clipboard',
     url: 'http://localhost:3500',
     reuseExistingServer: false,
   },
