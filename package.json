@@ -12,6 +12,10 @@
     "deploy": "gulp gh",
     "test": "npm run build && playwright test",
     "test:update": "npm run build && playwright test --update-snapshots",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:pug",
+    "lint:js": "eslint gulpfile.js src/js/main.js",
+    "lint:css": "stylelint 'src/styl/**/*.styl'",
+    "lint:pug": "pug-lint src/templates/",
     "deps:check": "npx npm-check-updates"
   },
   "repository": {
@@ -19,12 +23,15 @@
     "url": "git@github.com:mashweld/mashweld.github.io.git"
   },
   "devDependencies": {
+    "@eslint/js": "10.0.1",
     "@playwright/test": "1.58.2",
     "autoprefixer": "10.4.27",
     "browser-sync": "3.0.4",
     "cssnano": "6.1.2",
     "del": "6.1.1",
+    "eslint": "10.0.3",
     "gh-pages": "6.3.0",
+    "globals": "17.4.0",
     "gulp": "5.0.1",
     "gulp-filter": "5.1.0",
     "gulp-html-minifier-terser": "7.1.0",
@@ -35,6 +42,9 @@
     "gulp-sourcemaps": "3.0.0",
     "gulp-stylus": "2.7.1",
     "postcss": "8.5.8",
-    "serve": "14.2.6"
+    "postcss-styl": "0.12.3",
+    "pug-lint": "2.7.0",
+    "serve": "14.2.6",
+    "stylelint": "17.4.0"
   }
 }
