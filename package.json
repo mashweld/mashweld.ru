@@ -16,7 +16,16 @@
     "lint:js": "eslint gulpfile.js src/js/main.js",
     "lint:css": "stylelint 'src/styl/**/*.styl'",
     "lint:pug": "pug-lint src/templates/",
-    "deps:check": "npx npm-check-updates"
+    "deps:check": "npx npm-check-updates",
+    "prepare": "simple-git-hooks"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,mjs}": "eslint",
+    "*.styl": "stylelint",
+    "*.pug": "pug-lint"
   },
   "repository": {
     "type": "git",
@@ -45,6 +54,8 @@
     "postcss-styl": "0.12.3",
     "pug-lint": "2.7.0",
     "serve": "14.2.6",
+    "lint-staged": "16.3.3",
+    "simple-git-hooks": "2.13.1",
     "stylelint": "17.4.0"
   }
 }
