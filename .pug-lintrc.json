@@ -1,4 +1,4 @@
 {
   "disallowMixedSpacesAndTabs": true,
-  "validateIndentation": "\t"
+  "validateIndentation": "  "
 }

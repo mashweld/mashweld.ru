@@ -6,7 +6,7 @@ module.exports = {
   },
   webServer: {
     command: 'serve www --listen 3500 --no-clipboard',
-				port: 3500,
+    port: 3500,
     reuseExistingServer: true,
   },
   projects: [
