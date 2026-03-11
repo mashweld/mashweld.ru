@@ -1,6 +1,6 @@
 module.exports = {
-  testDir: './test',
-  snapshotDir: './test/screenshots',
+  testDir: './tests',
+  snapshotDir: './tests/screenshots',
   use: {
     baseURL: 'http://127.0.0.1:3500',
   },
