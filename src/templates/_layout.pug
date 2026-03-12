@@ -34,7 +34,7 @@ html.no-js
     meta(property='og:title', content=title)
     meta(property='og:type', content='website')
     meta(property='og:url', content='https://mashweld.ru/' + url)
-    meta(property='og:image', content='//mashweld.ru/img/logo.png')
+    meta(property='og:image', content='https://mashweld.ru/img/logo.png')
     meta(property='og:site_name', content='ООО «ВЕЛДТЕХМАШ-О»')
     meta(property='og:locale', content='ru_RU')
     meta(property='og:description', content='Сварочное оборудование, материалы, з/ч, сервис')
@@ -60,7 +60,7 @@ html.no-js
     meta(http-equiv='imagetoolbar', content='no')
     <![endif]-->
   body
-    .page(itemscope='', itemtype='http://schema.org/Organization')
+    .page(itemscope='', itemtype='https://schema.org/Organization')
       block header
         .header
           .header__in
@@ -102,21 +102,21 @@ html.no-js
                     img(src='img/logo_footer.png', width='107', height='60', alt='ООО «ВЕЛДТЕХМАШ-О»', title='ООО «ВЕЛДТЕХМАШ-О»')
                 .footer__copyright
                   | © ООО «
-                  a(itemprop='url', href='http://mashweld.ru/')
+                  a(itemprop='url', href='https://mashweld.ru/')
                     span(itemprop='name') ВЕЛДТЕХМАШ-О
-                  | », 
+                  | »,
                   span#current-year 2024
                   |.
                   br
                   span.visuallyhidden(itemprop='description') &nbsp; сварочное оборудование, материалы, з/ч, сервис
               .footer__contacts
-                .contacts.contacts_content_address(itemprop='address', itemscope='', itemtype='http://schema.org/PostalAddress')
-                  p
+                .contacts.contacts_content_address
+                  p(itemprop='address', itemscope='', itemtype='https://schema.org/PostalAddress')
                     span(itemprop='postalCode') 462030
                     | , &nbsp;
                     span(itemprop='addressLocality') Россия, с. Октябрьское &nbsp;
                     span(itemprop='streetAddress') ул. Садовая, д. 38
-                  p
+                  p(itemprop='address', itemscope='', itemtype='https://schema.org/PostalAddress')
                     span(itemprop='postalCode') 460048
                     | , &nbsp;
                     span(itemprop='addressLocality') Россия, г. Оренбург,&nbsp;
@@ -171,7 +171,7 @@ html.no-js
           window.localStorage && localStorage.font_css_cache || document.cookie.indexOf("font_css_cache") > -1 ? d() : b(window, "load", d)
         }();
       script(src='js/vendor/modernizr-build.min.js')
-      script(src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
+      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
       script.
         window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\\/script>')
       script(src='js/vendor/jquery.placeholder.min.js')
@@ -199,7 +199,7 @@ html.no-js
         })(document, window, "yandex_metrika_callbacks");
       noscript
         div
-          img(src='//mc.yandex.ru/watch/28219856?ut=noindex', style='position:absolute; left:-9999px;', alt='')
+          img(src='https://mc.yandex.ru/watch/28219856?ut=noindex', style='position:absolute; left:-9999px;', alt='')
       // /Yandex.Metrika counter
       // Pixel
       script(type='text/javascript').
