@@ -53,7 +53,7 @@ function templates() {
       }
     }))
     .pipe(htmlFilter)
-    .pipe(replace(/((src|href)=)(\"|')((img|css|js))/g, '$1$3../$4'))
+    .pipe(replace(/((src|href)=)(["'])(img|css|js)/g, '$1$3../$4'))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest('www'));
 }
@@ -71,7 +71,7 @@ var fontMimeTypes = {
 
 function fonts() {
   return gulp.src('src/fonts/webfonts.css')
-    .pipe(replace(/url\(['\"]?([^'\")]+)['\"]?\)/g, function (match, fontPath) {
+    .pipe(replace(/url\(['"]?([^'")]+)['"]?\)/g, function (match, fontPath) {
       var fullPath = path.resolve('src/fonts', fontPath);
       if (!fs.existsSync(fullPath)) return match;
       var ext = path.extname(fullPath).slice(1).toLowerCase();
