@@ -1,6 +1,7 @@
 www/
 dist/
 .idea/
+.claude/
 node_modules/
 assets
 test-results/
