@@ -7,8 +7,7 @@ var browserSync = require('browser-sync').create();
 var autoprefixer = require('autoprefixer');
 var cssnano = require('cssnano');
 var fs = require('fs');
-var sourcemaps = require('gulp-sourcemaps');
-var stylus = require('gulp-stylus');
+var sass = require('gulp-sass')(require('sass'));
 var postcss = require('gulp-postcss');
 var pug = require('gulp-pug');
 var rename = require('gulp-rename');
@@ -21,19 +20,12 @@ function clean() {
 }
 
 function css() {
-  return gulp.src('src/styl/styles.styl')
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(stylus({
-      paths: ['src/styl/utilities', 'node_modules'],
-      define: { modern: true, ie: false, ie8: false, ie9: false },
-      import: ['variables', 'mixins'],
-      sourcemap: { inline: true, sourceRoot: '.', basePath: 'src/css' }
-    }))
+  return gulp.src('src/scss/styles.scss', { sourcemaps: true })
+    .pipe(sass().on('error', sass.logError))
     .pipe(postcss([
       autoprefixer({ overrideBrowserslist: ['> 1%', 'last 2 versions', 'Firefox ESR'] })
     ]))
-    .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '.' }))
-    .pipe(gulp.dest('www/css'));
+    .pipe(gulp.dest('www/css', { sourcemaps: '.' }));
 }
 
 function templates() {
@@ -86,7 +78,7 @@ function copy() {
   return gulp.src([
     'src/**/*',
     '!src/templates/**',
-    '!src/styl/**',
+    '!src/scss/**',
     '!src/vendor/**',
     '!src/img/**',
     '!src/fonts/webfonts.css',

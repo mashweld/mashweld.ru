@@ -14,7 +14,7 @@
     "test:update": "npm run build && playwright test --update-snapshots",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:pug",
     "lint:js": "eslint gulpfile.js src/js/main.js",
-    "lint:css": "stylelint 'src/styl/**/*.styl'",
+    "lint:css": "stylelint 'src/scss/**/*.scss'",
     "lint:pug": "pug-lint src/templates/",
     "deps:check": "npx npm-check-updates",
     "prepare": "simple-git-hooks"
@@ -24,7 +24,7 @@
   },
   "lint-staged": {
     "*.{js,mjs}": "eslint",
-    "*.styl": "stylelint",
+    "*.scss": "stylelint",
     "*.pug": "pug-lint"
   },
   "repository": {
@@ -48,14 +48,14 @@
     "gulp-pug": "5.0.0",
     "gulp-rename": "2.1.0",
     "gulp-replace": "1.1.4",
-    "gulp-sourcemaps": "3.0.0",
-    "gulp-stylus": "2.7.1",
+    "gulp-sass": "*",
     "postcss": "8.5.8",
-    "postcss-styl": "0.12.3",
     "pug-lint": "2.7.0",
     "serve": "14.2.6",
     "lint-staged": "16.3.3",
     "simple-git-hooks": "2.13.1",
-    "stylelint": "17.4.0"
+    "sass": "*",
+    "stylelint": "17.4.0",
+    "stylelint-config-standard-scss": "*"
   }
 }

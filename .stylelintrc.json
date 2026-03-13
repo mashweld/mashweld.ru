@@ -1,7 +1,22 @@
 {
-  "customSyntax": "postcss-styl",
+  "extends": "stylelint-config-standard-scss",
   "rules": {
     "color-no-invalid-hex": true,
-    "block-no-empty": true
-  }
+    "block-no-empty": true,
+    "selector-class-pattern": "^[a-z][a-z0-9]*(-{1,2}[a-z0-9]+)*(__[a-z0-9]+(-{1,2}[a-z0-9]+)*)*(_{1,2}[a-z0-9]+(-[a-z0-9]+)*)*$",
+    "property-no-deprecated": null,
+    "no-descending-specificity": null,
+    "media-feature-name-no-unknown": [true, {
+      "ignoreMediaFeatureNames": ["min-device-pixel-ratio"]
+    }]
+  },
+  "overrides": [
+    {
+      "files": ["src/scss/_reset.scss"],
+      "rules": {
+        "declaration-block-no-duplicate-properties": null,
+        "declaration-property-value-keyword-no-deprecated": null
+      }
+    }
+  ]
 }
