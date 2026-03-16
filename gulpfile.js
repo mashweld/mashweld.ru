@@ -32,7 +32,7 @@ function css() {
 
 function templates() {
   var htmlFilter = gulpFilter(function (file) {
-    return !/(src\/templates\/index\.html)/.test(file.path);
+    return !/(src\/templates\/(index|404)\.html)/.test(file.path);
   }, { restore: true });
 
   return gulp.src(['src/templates/*.pug', '!src/templates/_*.pug'])
@@ -41,7 +41,7 @@ function templates() {
       pretty: true
     }))
     .pipe(rename(function (p) {
-      if (p.basename !== 'index') {
+      if (p.basename !== 'index' && p.basename !== '404') {
         p.dirname += '/'+p.basename;
         p.basename = 'index';
       }

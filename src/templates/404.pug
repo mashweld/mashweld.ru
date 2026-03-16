@@ -1,0 +1,14 @@
+extends ./_layout.pug
+
+block append globals
+  - var title = 'Страница не найдена — ООО «ВЕЛДТЕХМАШ-О»'
+  - var canonical = ''
+
+block content
+  .section
+    .section__head
+      h2.section__title Страница не найдена
+    .section__body
+      p Запрашиваемая страница не существует.
+      p
+        a(href=local_path) Вернуться на главную
