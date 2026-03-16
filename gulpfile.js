@@ -86,6 +86,13 @@ function copy() {
   ], { encoding: false }).pipe(gulp.dest('www', { encoding: false }));
 }
 
+function vendorCopy() {
+  return gulp.src([
+    'node_modules/glightbox/dist/css/glightbox.min.css',
+    'node_modules/glightbox/dist/js/glightbox.min.js'
+  ]).pipe(gulp.dest('www/vendor/glightbox'));
+}
+
 function minifyHtml() {
   return gulp.src('www/**/*.html')
     .pipe(replace(dir, ''))
@@ -114,7 +121,7 @@ function watch() {
 
 var defaultTask = gulp.series(
   clean,
-  gulp.parallel(templates, css, images, fonts, copy),
+  gulp.parallel(templates, css, images, fonts, copy, vendorCopy),
   gulp.parallel(minifyHtml, minifyCss)
 );
 
