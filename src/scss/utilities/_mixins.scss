@@ -22,25 +22,3 @@
   }
 }
 
-@mixin align-justify {
-  text-align: justify;
-  text-justify: newspaper;
-  font: $font-null;
-
-  &::after,
-  > .b-after {
-    display: inline-block;
-    width: 100%;
-    height: 0;
-    content: "";
-    vertical-align: top;
-    font: $font-null;
-  }
-}
-
-@mixin placeholder($content: #fff) {
-  &::placeholder {
-    color: $content;
-    opacity: 1;
-  }
-}
