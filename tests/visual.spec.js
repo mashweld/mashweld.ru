@@ -10,6 +10,7 @@ const pages = [
 
 for (const { name, path } of pages) {
   test(`${name} page`, async ({ page }) => {
+    await page.route(/mc\.yandex\.ru|qoopler\.ru/, (route) => route.abort());
     await page.goto(path);
     await page.waitForLoadState('networkidle');
     await expect(page).toHaveScreenshot(`${name}.png`, { fullPage: true });

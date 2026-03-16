@@ -5,7 +5,7 @@ module.exports = {
     baseURL: 'http://127.0.0.1:3500',
   },
   webServer: {
-    command: 'serve www --listen 3500 --no-clipboard',
+    command: 'npx serve www --listen tcp://0.0.0.0:3500 --no-clipboard',
     port: 3500,
     reuseExistingServer: true,
   },
