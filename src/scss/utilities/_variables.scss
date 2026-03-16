@@ -12,3 +12,7 @@ $base-font: string.unquote("12px/1.25") $font-tahoma;
 
 // Layouts
 $page-width: 960px;
+
+// Breakpoints
+$breakpoint-tablet: 768px;
+$breakpoint-mobile: 480px;

@@ -18,6 +18,9 @@ mixin menu(obj)
   - var active_item = obj && obj.active || 'index'
 
   nav(aria-label='Основная навигация')
+    label.menu-toggle
+      input.menu-toggle__checkbox(type='checkbox')
+      span.menu-toggle__icon Меню
     ul(class='menu '+menu_type)
       each item in items
         - var current = item.name === active_item ? 'menu__item_state_active': ''

@@ -11,8 +11,16 @@ module.exports = {
   },
   projects: [
     {
-      name: 'chromium',
+      name: 'desktop',
       use: { browserName: 'chromium', viewport: { width: 1280, height: 900 } },
+    },
+    {
+      name: 'tablet',
+      use: { browserName: 'chromium', viewport: { width: 768, height: 1024 } },
+    },
+    {
+      name: 'mobile',
+      use: { browserName: 'chromium', viewport: { width: 375, height: 667 } },
     },
   ],
 };

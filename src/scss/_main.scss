@@ -79,7 +79,7 @@ body {
   font: 12px/1.25 $font-arial;
   color: #565c6a;
   position: relative;
-  min-width: $page-width;
+  min-width: 320px;
   background: #19233f url('../img/bg/page-bg.jpg') 50% 0 no-repeat;
 }
 
@@ -189,7 +189,8 @@ body {
 .page {
   min-height: 100%;
   height: auto !important;
-  width: $page-width;
+  width: 100%;
+  max-width: $page-width;
   margin: auto;
   padding: 0;
   position: relative;
@@ -304,20 +305,95 @@ body {
   visibility: hidden;
 }
 
-@media screen and (width <= 960px) {
-  body {
-    min-width: 320px;
+
+
+// Hamburger toggle (hidden by default, visible on mobile)
+.menu-toggle {
+  display: none;
+}
+
+.menu-toggle__checkbox {
+  display: none;
+}
+
+.menu-toggle__icon {
+  display: none;
+  cursor: pointer;
+  padding: 12px 16px;
+  background: #8f222a;
+  color: #fff;
+  font: 500 12px/46px $font-daxline;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 2px #000;
+  text-align: center;
+}
+
+.menu-toggle__icon::before {
+  content: '\2261  ';
+  font-size: 18px;
+}
+
+@media screen and (width <= $breakpoint-tablet) {
+  .page {
+    padding: 0 16px;
   }
 
-  .page {
-    width: auto;
-    padding: 0 2%;
+  .header__in {
+    text-align: center;
+  }
+
+  .footer__contacts {
+    text-align: center;
+  }
+
+  .contacts_content_address {
+    display: none;
   }
 }
 
-@media screen and (width <= 560px) {
+@media screen and (width <= $breakpoint-mobile) {
   body {
     background-position: 100% 0;
+  }
+
+  .logo_type_header {
+    float: none;
+    display: block;
+    margin: 16px auto 10px;
+    text-align: center;
+  }
+
+  .contacts_ctx_header {
+    float: none;
+    display: block;
+    margin: 0 0 10px;
+    text-align: center;
+  }
+
+  .contacts__title {
+    margin-left: 0;
+  }
+
+  // Hamburger menu
+  .menu-toggle__icon {
+    display: block;
+  }
+
+  .menu_type_main {
+    display: none;
+  }
+
+  .menu-toggle__checkbox:checked ~ .menu_type_main {
+    display: block;
+  }
+
+  .menu_type_main > .menu__item {
+    display: block;
+
+    &::before,
+    &>.b-before {
+      display: none;
+    }
   }
 
   .footer__logo {
@@ -328,5 +404,9 @@ body {
 
   .footer__contacts {
     display: none;
+  }
+
+  .content {
+    margin: 215px 16px 0;
   }
 }

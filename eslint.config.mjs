@@ -14,4 +14,12 @@ export default [
       'no-var': 'off',
     },
   },
+  {
+    files: ['playwright.config.js', 'tests/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      sourceType: 'commonjs',
+      globals: { ...globals.node },
+    },
+  },
 ];

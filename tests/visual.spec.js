@@ -5,6 +5,7 @@ const pages = [
   { name: 'partners',     path: '/partners/' },
   { name: 'contacts',     path: '/contacts/' },
   { name: 'certificates', path: '/certificates/' },
+  { name: '404',          path: '/nonexistent-page/' },
 ];
 
 for (const { name, path } of pages) {

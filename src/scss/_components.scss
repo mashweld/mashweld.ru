@@ -1094,34 +1094,64 @@
 
 /* thumb-list < */
 
-@media screen and (width <= 960px) {
-  .contacts_content_address {
-    display:none;
+// Table responsive wrapper
+.wrapper {
+  @media screen and (width <= $breakpoint-tablet) {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
-@media screen and (width <= 560px) {
+// Certificate thumbnails responsive
+.thumb-list {
+  @media screen and (width <= $breakpoint-tablet) {
+    text-align: center;
+    margin-left: 0;
+
+    &__item {
+      margin-left: 0;
+      margin-right: 10px;
+    }
+  }
+
+  @media screen and (width <= $breakpoint-mobile) {
+    &__item {
+      display: block;
+      margin: 10px auto 0;
+      text-align: center;
+    }
+
+    &__thumb img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+// Section padding on mobile
+.section {
+  @media screen and (width <= $breakpoint-mobile) {
+    padding: 15px 16px 35px;
+  }
+}
+
+@media screen and (width <= $breakpoint-mobile) {
   .logo,
   .contacts {
-    display:block;
-    float:none;
-    text-align:left;
+    display: block;
+    float: none;
+    text-align: left;
   }
 
   .logo_type_footer {
-    text-align:center;
+    text-align: center;
   }
 
-    .menu_type_main {
-    white-space:normal;
+  .menu_type_footer {
+    display: block;
 
-    .menu__item {
-      display:block;
-
-      &::before,
-      &>.b-before {
-        display:none;
-      }
+    > .menu__item {
+      display: block;
     }
-    }
+  }
 }
