@@ -3,6 +3,7 @@ include ../vendor/bemto.pug
 block globals
   - var title = 'ООО «ВЕЛДТЕХМАШ-О»'
   - var url = ''
+  - var canonical = ''
   - var local_path = '/'+locals.dirname
 
 
@@ -38,6 +39,7 @@ html
     meta(property='og:site_name', content='ООО «ВЕЛДТЕХМАШ-О»')
     meta(property='og:locale', content='ru_RU')
     meta(property='og:description', content='Сварочное оборудование, материалы, з/ч, сервис')
+    link(rel='canonical', href='https://mashweld.ru/' + canonical)
     link(rel='apple-touch-icon', sizes='57x57', href='/apple-touch-icon-57x57.png')
     link(rel='apple-touch-icon', sizes='60x60', href='/apple-touch-icon-60x60.png')
     link(rel='apple-touch-icon', sizes='72x72', href='/apple-touch-icon-72x72.png')
