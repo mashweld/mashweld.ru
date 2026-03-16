@@ -48,14 +48,14 @@
     "gulp-pug": "5.0.0",
     "gulp-rename": "2.1.0",
     "gulp-replace": "1.1.4",
-    "gulp-sass": "*",
+    "gulp-sass": "6.0.1",
     "postcss": "8.5.8",
     "pug-lint": "2.7.0",
     "serve": "14.2.6",
     "lint-staged": "16.3.3",
     "simple-git-hooks": "2.13.1",
-    "sass": "*",
+    "sass": "1.98.0",
     "stylelint": "17.4.0",
-    "stylelint-config-standard-scss": "*"
+    "stylelint-config-standard-scss": "17.0.0"
   }
 }
