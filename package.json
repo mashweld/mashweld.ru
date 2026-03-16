@@ -16,6 +16,7 @@
     "lint:js": "eslint gulpfile.js",
     "lint:css": "stylelint 'src/scss/**/*.scss'",
     "lint:pug": "pug-lint src/templates/",
+    "audit": "npm audit",
     "deps:check": "npx npm-check-updates",
     "prepare": "simple-git-hooks"
   },
