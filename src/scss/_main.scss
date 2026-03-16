@@ -86,15 +86,6 @@ body {
   align-content: stretch;
   align-items: stretch;
 
-  .no-flexbox.no-flexboxlegacy.no-flexboxtweener & {
-    flex: none;
-
-    &__item {
-      float: left;
-      display: inline;
-    }
-  }
-
   &__item {
     flex: 0 0 auto;
   }
@@ -141,9 +132,6 @@ body {
         z-index: -1;
       }
 
-      .no-flexbox.no-flexboxlegacy.no-flexboxtweener & {
-        left: 0;
-      }
     }
 
     >.columns__item_type_b {
@@ -152,20 +140,6 @@ body {
       padding: 0 0 0 20px;
       order: 1;
 
-      .no-flexbox.no-flexboxlegacy.no-flexboxtweener & {
-        margin-left: 302px;
-      }
-    }
-
-    >.columns__item_type_a,
-    >.columns__item_type_b {
-      .no-flexbox.no-flexboxlegacy.no-flexboxtweener & {
-        float: left;
-        display: inline;
-
-//        position:relative;
-        margin-right: -100%;
-      }
     }
   }
 }
@@ -213,12 +187,6 @@ body {
   position: relative;
   overflow: hidden;
   z-index: 2;
-
-  .no-flexbox.no-flexboxlegacy & {
-    flex: none;
-    height: 100%;
-  }
-
   display: flex;
   flex-direction: column;
   align-content: stretch;
@@ -228,15 +196,6 @@ body {
 .header,
 .main,
 .footer {
-  .no-flexbox.no-flexboxlegacy & {
-    display: table-row;
-
-    &__in {
-      display: table-cell;
-      vertical-align: top;
-    }
-  }
-
   &__in {
     @include clearfix;
   }
@@ -248,13 +207,6 @@ body {
   background: #fff;
   background: rgb(255 255 255 / 90%);
 
-  .no-flexbox.no-flexboxlegacy & {
-    height: 100%;
-
-    &__in {
-      height: 100%;
-    }
-  }
 }
 
 .footer {
@@ -343,36 +295,6 @@ body {
 .invisible {
   visibility: hidden;
 }
-
-span.placeholder {
-  position: absolute;
-  z-index: 1;
-  cursor: text;
-}
-
-span.placeholder-hide-except-screenreader {
-  clip: rect(1px 1px 1px 1px);
-  clip: rect(1px, 1px, 1px, 1px);
-  padding: 0 !important;
-  border: 0 !important;
-  height: 1px !important;
-  width: 1px !important;
-  overflow: hidden;
-}
-
-span.placeholder-hide {
-  display: none;
-}
-
-/* overwrite for the HTML5 Boilerplate way to hide labels */
-label.visuallyhidden-with-placeholder {
-  /* clip: auto !important; */
-  height: auto !important;
-  overflow: visible !important;
-  position: absolute !important;
-  left: -999em;
-}
-
 
 @media screen and (width <= 960px) {
   body {

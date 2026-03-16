@@ -13,7 +13,7 @@
     "test": "npm run build && playwright test",
     "test:update": "npm run build && playwright test --update-snapshots",
     "lint": "npm run lint:js && npm run lint:css && npm run lint:pug",
-    "lint:js": "eslint gulpfile.js src/js/main.js",
+    "lint:js": "eslint gulpfile.js",
     "lint:css": "stylelint 'src/scss/**/*.scss'",
     "lint:pug": "pug-lint src/templates/",
     "deps:check": "npx npm-check-updates",

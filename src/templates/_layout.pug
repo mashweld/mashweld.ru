@@ -25,7 +25,7 @@ mixin menu(obj)
             span.menu__text-in #{item.text}
 
 doctype html
-html.no-js
+html
   head
     meta(charset='utf-8')
     title #{title}
@@ -56,9 +56,6 @@ html.no-js
     meta(name='msapplication-TileColor', content='#ffffff')
     meta(name='msapplication-TileImage', content='/mstile-144x144.png')
     meta(name='theme-color', content='#ffffff')
-    <!--[if IE]>
-    meta(http-equiv='imagetoolbar', content='no')
-    <![endif]-->
   body
     .page(itemscope='', itemtype='https://schema.org/Organization')
       block header
@@ -170,12 +167,6 @@ html.no-js
           var a = "#{local_path}css/webfonts.css?ver=0.0.1";
           window.localStorage && localStorage.font_css_cache || document.cookie.indexOf("font_css_cache") > -1 ? d() : b(window, "load", d)
         }();
-      script(src='js/vendor/modernizr-build.min.js')
-      script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js')
-      script.
-        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\\/script>')
-      script(src='js/vendor/jquery.placeholder.min.js')
-      // <script src="js/main.js"></script>
       // Yandex.Metrika counter
       script(type='text/javascript').
         (function (d, w, c) {
