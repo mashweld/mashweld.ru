@@ -62,6 +62,14 @@ ul>li {
   list-style-image: url('../img/bg/ico-list-item.png');
 }
 
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #4a90d9;
+  outline-offset: 2px;
+}
+
 // Layout
 html, body {
   height: 100%;

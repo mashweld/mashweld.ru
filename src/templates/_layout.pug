@@ -17,12 +17,13 @@ mixin menu(obj)
   - var menu_type = obj && obj.type ?  'menu_type_'+obj.type : 'menu_type_main'
   - var active_item = obj && obj.active || 'index'
 
-  nav
+  nav(aria-label='Основная навигация')
     ul(class='menu '+menu_type)
       each item in items
         - var current = item.name === active_item ? 'menu__item_state_active': ''
+        - var ariaCurrent = item.name === active_item ? 'page' : false
         li(class='menu__item '+current)
-          a.menu__text(href=(item.name === 'index') ? local_path: local_path+item.name+'/')
+          a.menu__text(href=(item.name === 'index') ? local_path: local_path+item.name+'/', aria-current=ariaCurrent)
             span.menu__text-in #{item.text}
 
 doctype html
