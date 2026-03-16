@@ -47,7 +47,7 @@ function templates() {
       }
     }))
     .pipe(htmlFilter)
-    .pipe(replace(/((src|href)=)(["'])(img|css|js)/g, '$1$3../$4'))
+    .pipe(replace(/((src|href)=)(["'])(img|css|js|vendor)/g, '$1$3../$4'))
     .pipe(htmlFilter.restore)
     .pipe(gulp.dest('www'));
 }
