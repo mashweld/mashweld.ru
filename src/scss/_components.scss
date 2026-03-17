@@ -84,6 +84,10 @@
   margin:25px 10px 0 0;
   font-size:16px;
   text-align: left;
+
+  @media screen and (width <= $page-width) {
+    display:none;
+  }
 }
 
 /* contacts < */
@@ -159,6 +163,18 @@
   .menu__item_state_active .menu__text {
     background:rgb(255 255 255 / 15%);
     cursor:auto;
+  }
+
+  @media screen and (width <= $breakpoint-mobile) {
+    white-space:normal;
+
+    > .menu__item {
+      display:block;
+
+      &::before {
+        display:none;
+      }
+    }
   }
 }
 

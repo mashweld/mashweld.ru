@@ -230,10 +230,6 @@ body {
   .footer__contacts {
     text-align: center;
   }
-
-  .contacts_content_address {
-    display: none;
-  }
 }
 
 @media screen and (width <= $breakpoint-mobile) {
@@ -257,27 +253,6 @@ body {
 
   .contacts__title {
     margin-left: 0;
-  }
-
-  // Hamburger menu
-  .menu-toggle__icon {
-    display: block;
-  }
-
-  .menu_type_main {
-    display: none;
-  }
-
-  .menu-toggle__checkbox:checked ~ .menu_type_main {
-    display: block;
-  }
-
-  .menu_type_main > .menu__item {
-    display: block;
-
-    &::before {
-      display: none;
-    }
   }
 
   .footer__logo {
