@@ -1,4 +1,3 @@
-@use 'sass:string';
 @use 'utilities/variables' as *;
 @use 'utilities/mixins' as *;
 
@@ -30,7 +29,7 @@
   }
 
   &__content {
-    font:$font-null;
+    font-size:0;
     padding:0;
     margin:0;
   }
@@ -96,7 +95,7 @@
   clear:both;
   padding:0;
   margin:auto;
-  font:$font-null;
+  font-size:0;
   white-space:nowrap;
   position:relative;
   background:#8F222A;
@@ -128,7 +127,7 @@
       margin:-7px 0 0;
       background:#fff;
       background:rgb(255 255 255 / 33%);
-      font:$font-null;
+      font-size:0;
     }
   }
 
@@ -175,7 +174,7 @@
   width:100%;
   padding:0;
   margin:0;
-  font:$font-null;
+  font-size:0;
   white-space:nowrap;
   position:relative;
   text-align:center;

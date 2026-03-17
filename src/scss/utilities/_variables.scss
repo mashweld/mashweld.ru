@@ -1,14 +1,8 @@
-@use 'sass:string';
-
 // Fonts Families
 $font-tahoma: tahoma, verdana, segoe, sans-serif;
 $font-arial: arial, "Helvetica Neue", helvetica, sans-serif;
 $font-plumb: 'Plumb', $font-tahoma;
 $font-daxline: 'Daxline', $font-tahoma;
-
-// Fonts
-$font-null: string.unquote("0/0") 'null', a;
-$base-font: string.unquote("12px/1.25") $font-tahoma;
 
 // Layouts
 $page-width: 960px;
